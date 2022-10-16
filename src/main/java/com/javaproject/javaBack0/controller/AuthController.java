@@ -31,10 +31,12 @@ public class AuthController {
 
     /*hasMap apply*/
     @PostMapping("/hello1")
-    public String getYourName(@RequestParam String name, @RequestBody UserModel userModel) {
+    public String getYourName(@RequestParam String name,@RequestParam Integer age, @RequestBody UserModel userModel) {
         HashMap<String, String> hashMap = new HashMap<String, String>();
 
-        return "hello world" +userModel.getName();
+
+       /* return "hello world " + userModel.getName() +" "+ userModel.getAge();
+*/        return "hello world " + name + " and your age is " + age  ;
     }
 }
 
