@@ -1,7 +1,12 @@
 package com.javaproject.javaBack0.controller;
 
 
+import com.javaproject.javaBack0.model.MessageResponse;
 import com.javaproject.javaBack0.model.UserModel;
+import com.javaproject.javaBack0.repository.UserRepository;
+import com.javaproject.javaBack0.request.UserModelRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -11,32 +16,28 @@ import java.util.HashMap;
 @RequestMapping("/")
 public class AuthController {
 
+    @Autowired
+    UserRepository mUserRepository;
 
-    @RequestMapping(value = "/welcome1",method = RequestMethod.GET)
-    public String welcome(){
-        return "you are welcome";
+
+    @PostMapping("/registration")
+    public ResponseEntity<?> registration(@RequestBody UserModelRequest userModelRequest) {
+        if(userModelRequest.getFirstName().isEmpty()){
+
+        boolean exists = mUserRepository.existsByEmail(userModelRequest.getEmail());
+        if (exists) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already taken!"));
+        }
+        }
+        //database
+
+
+
+
+
+
+        return ResponseEntity.ok(userModelRequest);
     }
 
-
-    @GetMapping("/hello")
-    public String printHelloWorld(){
-        return "hello world";
-    }
-
-
-  /*  @PostMapping("/hello1")
-    public String getYourName(@RequestParam String name){
-        return "hello world" +name;
-    }*/
-
-    /*hasMap apply*/
-    @PostMapping("/hello1")
-    public String getYourName(@RequestParam String name,@RequestParam Integer age, @RequestBody UserModel userModel) {
-        HashMap<String, String> hashMap = new HashMap<String, String>();
-
-
-       /* return "hello world " + userModel.getName() +" "+ userModel.getAge();
-*/        return "hello world " + name + " and your age is " + age  ;
-    }
 }
 
