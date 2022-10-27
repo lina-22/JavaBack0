@@ -3,38 +3,85 @@ package com.javaproject.javaBack0.model;
 
 import javax.persistence.*;
 
+
+import javax.persistence.*;
+
+
+
+
 @Entity
 @Table(name = "users")
 public class UserModel {
-
     @Id
-    @Column(name = "id", nullable = false )
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "first_name", nullable = false )
-    String firstName;
-    @Column(name = "last_name", nullable = false )
+
+    private String firstName;
     String lastName;
-    @Column(name = "email", nullable = false )
+    @Column(nullable = false)
     String email;
-    @Column(name = "password", nullable = false )
     String password;
-    String name;
-    String age;
 
-    public String getName() {
-        return name;
+    private String role;
+    private String roleId;
+
+
+
+
+    public Long getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getAge() {
-        return age;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 }
